@@ -1,10 +1,17 @@
 ﻿<!Doctype html>
 <html>
 <head>
-    <title>Progress Bar Sample (Plain Javascript) </title>
+    <title>Progress Bar Sample </title>
     <script type="text/javascript">
+        var inputs = {
+            "SampleData": [{ "buttons": [10, 38, -13, -18], "bars": [62, 45, 62], "limit": 230 },
+            { "buttons": [+23, -23, -50, +50, +18], "bars": [10, 35, 70, 80], "limit": 230 },
+            { "buttons": [20, 38, -31, -50, -25, +40], "bars": [62, 45], "limit": 230 },
+            { "buttons": [10, 38, -13, -18], "bars": [62, 45, 30, 40, 50], "limit": 230 }]
+        };
         function SetProgress(progressdelta) {
             try {
+                alert(inputs.SampleData[0].buttons.length);
                 var scale = 230; //for 100%
                 var progressBar = document.getElementById("myBar" + progressBarItem.selectedIndex);
                 var progressBarText = document.getElementById("myBarText" + progressBarItem.selectedIndex);
@@ -30,22 +37,10 @@
             }
         }
     </script>
-    <style>
-        .myProgress {
-            width: 100%;
-            background-color: #ddd;
-        }
-
-        #myBar0, #myBar1, #myBar2, #myBar3 {
-            height: 20px;
-            background-color: green;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href=".\ProgressStyle.css">
 </head>
 <body>
-
     <h1>Progress Bar Sample (Using Plain JavaScript)</h1>
-    <h2>Scale - 1 : 23</h2>
     <table style="width: 80%">
         <tr>
             <td>#0</td>
@@ -58,7 +53,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2"></td>
+            <td colspan="2" style="height: 15px"></td>
         </tr>
         <tr>
             <td style="width: 10%">#1</td>
@@ -71,7 +66,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2"></td>
+            <td colspan="2" style="height: 15px"></td>
         </tr>
         <tr>
             <td>#2</td>
@@ -84,7 +79,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2"></td>
+            <td colspan="2" style="height: 15px"></td>
         </tr>
         <tr>
             <td>#3</td>
@@ -97,7 +92,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2"></td>
+            <td colspan="2" style="height: 15px"></td>
         </tr>
     </table>
     <table>
@@ -109,12 +104,17 @@
                     <option>Progress #3</option>
                     <option>Progress #4</option>
                 </select>
-                <button onclick=" SetProgress(this.innerText) ">+10</button>
-                <button onclick=" SetProgress(this.innerText) ">38</button>
-                <button onclick=" SetProgress(this.innerText) ">-13</button>
-                <button onclick=" SetProgress(this.innerText) ">-18</button>
+                <button onclick=" SetProgress(this.innerText) ">+25</button>
+                <button onclick=" SetProgress(this.innerText) ">-25</button>
+                <button onclick=" SetProgress(this.innerText) ">+50</button>
+                <button onclick=" SetProgress(this.innerText) ">-50</button>
             </td>
         </tr>
     </table>
+    <br />
+    <textarea style="width: 100%; background: #cce6ff">
+    Note as per requirement: This application is using Vanila JavaScript.
+    Limit-Equivalent to 100% of each bar is 230(i.e the bar is 100% filled when the progress hits 230)
+</textarea>
 </body>
 </html>

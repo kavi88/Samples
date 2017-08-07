@@ -1,0 +1,9 @@
+﻿.myProgress {
+    width: 100%;
+    background-color: #ddd;
+}
+
+#myBar0, #myBar1, #myBar2, #myBar3 {
+    height: 30px;
+    background-color: green;
+}
