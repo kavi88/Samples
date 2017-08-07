@@ -1,0 +1,120 @@
+﻿<!Doctype html>
+<html>
+<head>
+    <title>Progress Bar Sample (Plain Javascript) </title>
+    <script type="text/javascript">
+        function SetProgress(progressdelta) {
+            try {
+                var scale = 230; //for 100%
+                var progressBar = document.getElementById("myBar" + progressBarItem.selectedIndex);
+                var progressBarText = document.getElementById("myBarText" + progressBarItem.selectedIndex);
+                var currentPercentage = progressBarText.innerHTML.replace("%", "");
+                var currentValue = (currentPercentage * 230) / 100;
+                var newValue = parseInt(currentValue) + parseInt(progressdelta);
+                var newPercentage = parseInt((newValue * 100) / 230);
+                if (newPercentage > 100) {
+                    progressBar.style.width = "100%";
+                    progressBarText.innerHTML = newPercentage + "%";
+                    progressBar.style.background = "red";
+                } else if (newPercentage < 0) {
+                    progressBar.style.width = "0%";
+                    progressBarText.innerHTML = "0%";
+                    progressBar.style.background = "green";
+                } else {
+                    progressBarText.innerHTML = newPercentage + "%";
+                    progressBar.style.width = newPercentage + "%";
+                    progressBar.style.background = "green";
+                }
+            } catch (e) {
+                alert(e);
+            }
+        }
+    </script>
+    <style>
+        .myProgress {
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        #myBar0, #myBar1, #myBar2, #myBar3 {
+            height: 20px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Progress Bar Sample (Using Plain JavaScript)</h1>
+    <h2>Scale - 1 : 23</h2>
+    <table style="width: 80%">
+        <tr>
+            <td>#0</td>
+            <td class="myProgress">
+                <div id="myBar0" style="position: relative;">
+                    <div id="myBarText0" style="position: absolute;">
+                        100%
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td style="width: 10%">#1</td>
+            <td class="myProgress">
+                <div id="myBar1" style="position: relative;">
+                    <div id="myBarText1" style="position: absolute;">
+                        100%
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td>#2</td>
+            <td class="myProgress">
+                <div id="myBar2" style="position: relative;">
+                    <div id="myBarText2" style="position: absolute;">
+                        100%
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td>#3</td>
+            <td class="myProgress">
+                <div id="myBar3" style="position: relative;">
+                    <div id="myBarText3" style="position: absolute;">
+                        100%
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td colspan="2">
+                <select id="progressBarItem">
+                    <option>Progress #1</option>
+                    <option>Progress #2</option>
+                    <option>Progress #3</option>
+                    <option>Progress #4</option>
+                </select>
+                <button onclick=" SetProgress(this.innerText) ">+10</button>
+                <button onclick=" SetProgress(this.innerText) ">38</button>
+                <button onclick=" SetProgress(this.innerText) ">-13</button>
+                <button onclick=" SetProgress(this.innerText) ">-18</button>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
