@@ -2,119 +2,49 @@
 <html>
 <head>
     <title>Progress Bar Sample </title>
-    <script type="text/javascript">
-        var inputs = {
-            "SampleData": [{ "buttons": [10, 38, -13, -18], "bars": [62, 45, 62], "limit": 230 },
-            { "buttons": [+23, -23, -50, +50, +18], "bars": [10, 35, 70, 80], "limit": 230 },
-            { "buttons": [20, 38, -31, -50, -25, +40], "bars": [62, 45], "limit": 230 },
-            { "buttons": [10, 38, -13, -18], "bars": [62, 45, 30, 40, 50], "limit": 230 }]
-        };
-        function SetProgress(progressdelta) {
-            try {
-                alert(inputs.SampleData[0].buttons.length);
-                var scale = 230; //for 100%
-                var progressBar = document.getElementById("myBar" + progressBarItem.selectedIndex);
-                var progressBarText = document.getElementById("myBarText" + progressBarItem.selectedIndex);
-                var currentPercentage = progressBarText.innerHTML.replace("%", "");
-                var currentValue = (currentPercentage * 230) / 100;
-                var newValue = parseInt(currentValue) + parseInt(progressdelta);
-                var newPercentage = parseInt((newValue * 100) / 230);
-                if (newPercentage > 100) {
-                    progressBar.style.width = "100%";
-                    progressBarText.innerHTML = newPercentage + "%";
-                    progressBar.style.background = "red";
-                } else if (newPercentage < 0) {
-                    progressBar.style.width = "0%";
-                    progressBarText.innerHTML = "0%";
-                    progressBar.style.background = "green";
-                } else {
-                    progressBarText.innerHTML = newPercentage + "%";
-                    progressBar.style.width = newPercentage + "%";
-                    progressBar.style.background = "green";
-                }
-            } catch (e) {
-                alert(e);
-            }
-        }
-    </script>
+    <script type="text/javascript" src=".\sampledata.js"></script>
+    <script type="text/javascript" src=".\functions.js"></script>
     <link rel="stylesheet" type="text/css" href=".\ProgressStyle.css">
 </head>
 <body>
     <h1>Progress Bar Sample (Using Plain JavaScript)</h1>
     <table style="width: 80%">
-        <tr>
-            <td>#0</td>
-            <td class="myProgress">
-                <div id="myBar0" style="position: relative;">
-                    <div id="myBarText0" style="position: absolute;">
-                        100%
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="height: 15px"></td>
-        </tr>
-        <tr>
-            <td style="width: 10%">#1</td>
-            <td class="myProgress">
-                <div id="myBar1" style="position: relative;">
-                    <div id="myBarText1" style="position: absolute;">
-                        100%
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="height: 15px"></td>
-        </tr>
-        <tr>
-            <td>#2</td>
-            <td class="myProgress">
-                <div id="myBar2" style="position: relative;">
-                    <div id="myBarText2" style="position: absolute;">
-                        100%
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="height: 15px"></td>
-        </tr>
-        <tr>
-            <td>#3</td>
-            <td class="myProgress">
-                <div id="myBar3" style="position: relative;">
-                    <div id="myBarText3" style="position: absolute;">
-                        100%
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="height: 15px"></td>
-        </tr>
+        <script type="text/javascript">
+            for (i = 0; i < inputs.SampleData[randomInput].bars.length; i++) {
+                document.write("<tr><td style=\"width: 5%\">#" + i + "</td>");
+                document.write("<td class=\"myProgress\"><div id=\"myBar" + i + "\" style=\"position: relative; width: " + inputs.SampleData[randomInput].bars[i] + "%\">");
+                document.write("<div id=\"myBarText" + i + "\" style=\"position: absolute; \">" + inputs.SampleData[randomInput].bars[i] + "%</div>");
+                document.write("</div></td></tr>");
+                document.write("<tr><td colspan=\"2\" style=\"height: 15px\"></td></tr>");
+            }
+        </script>
     </table>
     <table>
         <tr>
             <td colspan="2">
                 <select id="progressBarItem">
-                    <option>Progress #1</option>
-                    <option>Progress #2</option>
-                    <option>Progress #3</option>
-                    <option>Progress #4</option>
+                    <script type="text/javascript">
+                        for (i = 0; i < inputs.SampleData[randomInput].bars.length; i++) {
+                            document.write("<option>Progress #" + i + "</option>");
+                        }
+                    </script>
                 </select>
-                <button onclick=" SetProgress(this.innerText) ">+25</button>
-                <button onclick=" SetProgress(this.innerText) ">-25</button>
-                <button onclick=" SetProgress(this.innerText) ">+50</button>
-                <button onclick=" SetProgress(this.innerText) ">-50</button>
+                <script type="text/javascript">
+                    for (i = 0; i < inputs.SampleData[randomInput].buttons.length; i++) {
+                        document.write("<button style=\"margin: 5px\" onclick=\"SetProgress(this.innerText)\">" +
+                            inputs.SampleData[randomInput].buttons[i] + "</button>");
+                    }
+                </script>
             </td>
         </tr>
     </table>
     <br />
-    <textarea style="width: 100%; background: #cce6ff">
+<textarea style="width: 100%; height: 45px; background: #cce6ff">
     Note as per requirement: This application is using Vanila JavaScript.
     Limit-Equivalent to 100% of each bar is 230(i.e the bar is 100% filled when the progress hits 230)
+    Each time the page is refreshed a new endpoint is loaded.
+    Randomly generates between 2 and 5 progress bars.
+    Randomly generates between 4 and 6 buttons.
 </textarea>
 </body>
 </html>
